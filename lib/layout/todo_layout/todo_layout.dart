@@ -57,7 +57,7 @@ class HomeLayout extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                          child: Form(
                         key: formKey,
-                        child: Column(
+                          child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             DefaultField(
@@ -154,8 +154,4 @@ class HomeLayout extends StatelessWidget {
       ),
     );
   }
-
-
 }
-
-

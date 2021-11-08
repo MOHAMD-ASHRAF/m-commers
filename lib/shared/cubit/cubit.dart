@@ -6,9 +6,6 @@ import 'package:sqflite/sqflite.dart';
 import 'package:untitled/modules/todo_app/archived_tasks/archived_tasks_screen.dart';
 import 'package:untitled/modules/todo_app/done_taskes/done_taskes_screen.dart';
 import 'package:untitled/modules/todo_app/new_tasks/new_tasks_screen.dart';
-
-
-
 import 'package:untitled/network/local/cache_helper.dart';
 import 'package:untitled/shared/components/constants.dart';
 import 'package:untitled/shared/cubit/states.dart';

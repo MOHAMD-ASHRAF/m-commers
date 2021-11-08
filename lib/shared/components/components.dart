@@ -1,7 +1,9 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:untitled/modules/news_app/web_view/web_view.dart';
 import 'package:untitled/shared/cubit/cubit.dart';
+import 'package:untitled/style/color.dart';
 
 Widget defaultButton({
   VoidCallback? function,
@@ -11,7 +13,7 @@ Widget defaultButton({
   width: double.infinity,
   height: 40,
   decoration: BoxDecoration(
-    color: Colors.teal,
+    color: defaultColor,
     borderRadius: BorderRadius.circular(10),
   ),
   child: MaterialButton(
@@ -35,9 +37,11 @@ Widget DefaultField(
       FormFieldValidator<String>? validate,
       required String label,
       required IconData preFix,
+      IconData? sufFix,
       bool redOnly =false,
       GestureTapCallback? onTap,
       ValueChanged<String>? onChange,
+      ValueChanged<String>? onSubmitted,
     })=>TextFormField(
     controller: controller,
     keyboardType: type,
@@ -47,6 +51,7 @@ Widget DefaultField(
       fontSize: 20,
      ),
     prefix: Icon(preFix),
+    suffix: Icon(sufFix),
     border: OutlineInputBorder(
       borderRadius: const BorderRadius.all(
         const Radius.circular(15),
@@ -57,6 +62,7 @@ Widget DefaultField(
     validator: validate,
    onTap: onTap,
   onChanged: onChange,
+  onFieldSubmitted: onSubmitted,
 );
 
 Widget buildTaskItem(Map model ,context)  =>Dismissible(
@@ -137,11 +143,8 @@ Widget buildTaskItem(Map model ,context)  =>Dismissible(
               Icons.archive_outlined,color: Colors.black54,
 
           ),)
-
       ],
-
     ),
-
   ),
 );
 
@@ -254,3 +257,34 @@ void navigateAndFinish(context ,widget) => Navigator.pushAndRemoveUntil(
 ),
         (Route<dynamic>  route) => false
 );
+
+void showToast({
+  required String text,
+  required ToastStates state,
+})=> Fluttertoast.showToast(
+    msg: text,
+    toastLength: Toast.LENGTH_LONG,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 5,
+    backgroundColor: chooseToastColor(state),
+    textColor: Colors.white,
+    fontSize: 16.0
+);
+
+enum ToastStates {SUCCESS ,ERROR , WARNING}
+Color chooseToastColor(ToastStates state){
+
+  Color color;
+  switch(state){
+    case ToastStates.SUCCESS:
+      color =Colors.green;
+      break;
+    case ToastStates.ERROR:
+      color =Colors.red;
+      break;
+    case ToastStates.WARNING:
+      color =Colors.amber ;
+      break;
+  }
+  return color;
+}
