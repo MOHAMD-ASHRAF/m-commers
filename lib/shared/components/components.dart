@@ -42,28 +42,31 @@ Widget DefaultField(
       GestureTapCallback? onTap,
       ValueChanged<String>? onChange,
       ValueChanged<String>? onSubmitted,
-    })=>TextFormField(
-    controller: controller,
-    keyboardType: type,
-    decoration: InputDecoration(
-    labelText: label,
-    labelStyle: TextStyle(
-      fontSize: 20,
-     ),
-    prefix: Icon(preFix),
-    suffix: Icon(sufFix),
-    border: OutlineInputBorder(
-      borderRadius: const BorderRadius.all(
-        const Radius.circular(15),
+    })=>Container(
+      height: 40,
+      child: TextFormField(
+      controller: controller,
+      keyboardType: type,
+      decoration: InputDecoration(
+      labelText: label,
+      labelStyle: TextStyle(
+        fontSize: 20,
+       ),
+      prefix: Icon(preFix),
+      suffix: Icon(sufFix),
+      border: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(
+          const Radius.circular(15),
+        ),
       ),
-    ),
   ),
-    readOnly:  redOnly ,
-    validator: validate,
+      readOnly:  redOnly ,
+      validator: validate,
    onTap: onTap,
   onChanged: onChange,
   onFieldSubmitted: onSubmitted,
-);
+),
+    );
 
 Widget buildTaskItem(Map model ,context)  =>Dismissible(
   key: Key(model['id'].toString()),

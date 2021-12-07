@@ -33,7 +33,6 @@ class BannersModel
   }
 }
 
-
 class ProductsModel
 {
  late int id;

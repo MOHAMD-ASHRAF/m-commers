@@ -19,6 +19,7 @@ import 'package:untitled/shop_app/onBording/onbording_screen.dart';
 import 'package:untitled/style/themes.dart';
 import 'bloc_observer.dart';
 import 'layout/news_app/cubit/cubit.dart';
+
 import 'modules/counter/counter_screen.dart';
 
 import 'package:untitled/modules/second_screen.dart';
@@ -33,6 +34,7 @@ void main() async{
 
   bool? onBoarding =CacheHelper.getData(key: 'onBoarding');
   String? token =CacheHelper.getData(key: 'token') as String;
+  print(token);
 
   if(onBoarding != null){
     if(token != null) widget= ShopLayout();
@@ -60,11 +62,12 @@ class MyApp extends StatelessWidget {
         BlocProvider( create: (BuildContext context) =>AppCubit()..changAppMode(
           fromShared: isDark,
         ),),
-        BlocProvider(create: (BuildContext context) => ShopCubit()..getHomeData()),
+        BlocProvider(create: (BuildContext context) => ShopCubit()..getHomeData()..getCateogries()..getFavorites()..getUserData()),
       ],
       child: BlocConsumer<AppCubit,AppStates>(
         listener: (context,state){},
         builder: (context,state){
+
           return  MaterialApp(
             theme: lightTheme,
             darkTheme: darkTheme,
